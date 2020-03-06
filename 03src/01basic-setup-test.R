@@ -8,7 +8,9 @@ library(patchwork)
 
 test = fread("./01original-data/test.csv")
 
-mat = matrix(0, nrow = (38872*2), ncol = 15)
+test$game_id %>% unique() %>% length() # 16787
+
+mat = matrix(0, nrow = (16787*2), ncol = 15)
 
 colnames(mat) = c("game_id", "player", "species", 
                   "ability", "addToG", "camera", "getToG", "rightC", "selection", "setToG", 
@@ -18,14 +20,16 @@ colnames(mat) = c("game_id", "player", "species",
 mat = as.data.frame(mat)
 
 game_id_vec = vector()
-for(i in 1:38872) {
+for(i in 38872:55658) {
   g = rep(i,2)
   game_id_vec = c(game_id_vec, g) 
 }
+game_id_vec %>% head; game_id_vec %>% tail()
+game_id_vec %>% length()
 
 mat$game_id = game_id_vec
 
-mat$player = rep(c(0,1),38872) 
+mat$player = rep(c(0,1),16787) 
 
 
 
