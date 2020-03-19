@@ -12,6 +12,8 @@ train = fread("./01original-data/train.csv")
 test = fread("./01original-data/test.csv")
 sub = fread("./01original-data/sample_submission.csv")
 
+train %>% filter(game_id == 0)
+
 train$win = ifelse(train$winner == train$player, 1, 0)
 
 win_train = train %>% filter(win == 1)
@@ -24,6 +26,8 @@ table(win_train$event) %>% plot()
 table(lose_train$event) %>% plot()
 # 컨트롤 횟수와 우승과의 상관관계가 있어 보임.
 ###
+
+
 
 
 ###
